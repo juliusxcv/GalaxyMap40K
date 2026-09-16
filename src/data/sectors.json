@@ -1,0 +1,444 @@
+[
+  {
+    "id": "agripinaa-sector",
+    "name": "Agripinaa Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      21.594949799793092,
+      -0.5213518822565675,
+      9.314378846868179
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Agripinaa_Sector"
+  },
+  {
+    "id": "armageddon-sector",
+    "name": "Armageddon Sector",
+    "segmentumId": "solar",
+    "position": [
+      23.35603011422507,
+      -1.222381005436182,
+      3.7063542561949534
+    ],
+    "radius": 6,
+    "accuracy": 1,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Armageddon_Sector"
+  },
+  {
+    "id": "askellon-sector",
+    "name": "Askellon Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      21.620810573259458,
+      1.0768333468586206,
+      12.275446071883277
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Askellon_Sector"
+  },
+  {
+    "id": "battlefleet-scarus",
+    "name": "Battlefleet Scarus",
+    "segmentumId": "obscurus",
+    "position": [
+      16.26291670343305,
+      1.3684596745297313,
+      25.974342325890593
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Battlefleet_Scarus"
+  },
+  {
+    "id": "belis-corona-sector",
+    "name": "Belis Corona Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      26.703047917650164,
+      -1.7605700306594372,
+      12.976438849821017
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Belis_Corona_Sector"
+  },
+  {
+    "id": "cadian-sector",
+    "name": "Cadian Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      16.104894301943382,
+      1.9966456163674593,
+      20.92763155599328
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Cadian_Sector"
+  },
+  {
+    "id": "caligari-sector",
+    "name": "Caligari Sector",
+    "segmentumId": "tempestus",
+    "position": [
+      5.798750720200301,
+      0.545014769770205,
+      -19.158780869972567
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Caligari_Sector"
+  },
+  {
+    "id": "calixis-sector",
+    "name": "Calixis Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      5.059374706963135,
+      1.1876939572393894,
+      17.243370933144178
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Calixis_Sector"
+  },
+  {
+    "id": "chalnath-expanse",
+    "name": "Chalnath Expanse",
+    "segmentumId": "ultima",
+    "position": [
+      35.481274185121876,
+      0.7110202014446259,
+      6.50800357160341
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Chalnath_Expanse"
+  },
+  {
+    "id": "coronid-deeps",
+    "name": "Coronid Deeps",
+    "segmentumId": "ultima",
+    "position": [
+      39.91388149699472,
+      0.6033589895814657,
+      -12.730674774972524
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Coronid_Deeps"
+  },
+  {
+    "id": "corribra-sector",
+    "name": "Corribra Sector",
+    "segmentumId": "tempestus",
+    "position": [
+      26.967807140597387,
+      -1.5919480500742793,
+      -8.842940655748434
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Corribra_Sector"
+  },
+  {
+    "id": "elaras-veil",
+    "name": "Elara's Veil",
+    "segmentumId": "ultima",
+    "position": [
+      68.36094957262593,
+      -1.8030145075172186,
+      10.75455348955043
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Elara's_Veil"
+  },
+  {
+    "id": "endymion-cluster",
+    "name": "Endymion Cluster",
+    "segmentumId": "ultima",
+    "position": [
+      51.64349679567874,
+      -0.9430260229855776,
+      -18.04841330026751
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Endymion_Cluster"
+  },
+  {
+    "id": "gothic-sector",
+    "name": "Gothic Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      18.766042184885567,
+      -0.5869329972192645,
+      21.615161798546676
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Gothic_Sector"
+  },
+  {
+    "id": "ixaniad-sector",
+    "name": "Ixaniad Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      19.44943008663032,
+      0.5584780117496848,
+      25.37561410801117
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Ixaniad_Sector"
+  },
+  {
+    "id": "jericho-reach",
+    "name": "Jericho Reach",
+    "segmentumId": "ultima",
+    "position": [
+      60.227117399436494,
+      -0.9806808978319168,
+      26.840449177263842
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Jericho_Reach"
+  },
+  {
+    "id": "korianis-sector",
+    "name": "Korianis Sector",
+    "segmentumId": "ultima",
+    "position": [
+      65.30363616144477,
+      1.6430885381996632,
+      -19.540136136189943
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Korianis_Sector"
+  },
+  {
+    "id": "koronus-expanse",
+    "name": "Koronus Expanse",
+    "segmentumId": "obscurus",
+    "position": [
+      37.868543485397176,
+      0.15035531017929316,
+      19.81887848902641
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Koronus_Expanse"
+  },
+  {
+    "id": "laanah-rifts",
+    "name": "Laanah Rifts",
+    "segmentumId": "pacificus",
+    "position": [
+      10.574635465436382,
+      1.6267193043604493,
+      -7.282285329035075
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Laanah_Rifts"
+  },
+  {
+    "id": "maelstrom",
+    "name": "Maelstrom",
+    "segmentumId": "ultima",
+    "position": [
+      42.43745895183133,
+      -0.9330502562224865,
+      6.954387109299282
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Maelstrom"
+  },
+  {
+    "id": "marsalis-sector",
+    "name": "Marsalis Sector",
+    "segmentumId": null,
+    "position": [
+      51.15218159808532,
+      -0.12304750503972173,
+      -18.533583812635868
+    ],
+    "radius": 6,
+    "accuracy": 0.12,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Marsalis_Sector"
+  },
+  {
+    "id": "moebian-domain",
+    "name": "Moebian Domain",
+    "segmentumId": "solar",
+    "position": [
+      21.167988888445073,
+      0.9155650660395622,
+      -3.0311588928050024
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Moebian_Domain"
+  },
+  {
+    "id": "nachmund-sector",
+    "name": "Nachmund Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      14.603654451732604,
+      -1.9346640817821026,
+      10.38081992808027
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Nachmund_Sector"
+  },
+  {
+    "id": "nemesys-sector",
+    "name": "Nemesys Sector",
+    "segmentumId": "tempestus",
+    "position": [
+      34.030952560686046,
+      -1.7822782108560205,
+      -21.688651674126945
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Nemesys_Sector"
+  },
+  {
+    "id": "oriente-sector",
+    "name": "Oriente Sector",
+    "segmentumId": "tempestus",
+    "position": [
+      12.627351309425208,
+      -1.0867792004719377,
+      -8.776775781786858
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Oriente_Sector"
+  },
+  {
+    "id": "orpheus-sector",
+    "name": "Orpheus Sector",
+    "segmentumId": "tempestus",
+    "position": [
+      9.130244501103222,
+      -1.4168413998559117,
+      -38.109342898821616
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Orpheus_Sector"
+  },
+  {
+    "id": "sabbat-worlds",
+    "name": "Sabbat Worlds",
+    "segmentumId": "pacificus",
+    "position": [
+      1.976051417534073,
+      -0.6020100740715861,
+      6.658496357120754
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Sabbat_Worlds"
+  },
+  {
+    "id": "scarus-sector",
+    "name": "Scarus Sector",
+    "segmentumId": "obscurus",
+    "position": [
+      3.0538912233086535,
+      0.3417299557477236,
+      25.67919973169474
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Scarus_Sector"
+  },
+  {
+    "id": "sector-solar",
+    "name": "Sector Solar",
+    "segmentumId": "solar",
+    "position": [
+      13.542167681180013,
+      0.7748442608863115,
+      3.0225344107203234
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Sector_Solar"
+  },
+  {
+    "id": "sepulchor-sector",
+    "name": "Sepulchor Sector",
+    "segmentumId": null,
+    "position": [
+      -3.962491726749633,
+      -1.4382971008308232,
+      17.357285505009006
+    ],
+    "radius": 6,
+    "accuracy": 0.12,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Sepulchor_Sector"
+  },
+  {
+    "id": "ultima-sector",
+    "name": "Ultima Sector",
+    "segmentumId": "ultima",
+    "position": [
+      46.18653289803752,
+      0.2028383854776621,
+      -4.807711493233905
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Ultima_Sector"
+  },
+  {
+    "id": "veiled-region",
+    "name": "Veiled Region",
+    "segmentumId": "tempestus",
+    "position": [
+      16.695695213929866,
+      -1.68420778401196,
+      -32.051392785123085
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Veiled_Region"
+  },
+  {
+    "id": "yasan-sector",
+    "name": "Yasan Sector",
+    "segmentumId": "ultima",
+    "position": [
+      55.34200597758097,
+      0.8587574874982238,
+      -31.714392179246314
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Yasan_Sector"
+  },
+  {
+    "id": "zeist-sector",
+    "name": "Zeist Sector",
+    "segmentumId": "ultima",
+    "position": [
+      48.92618343796728,
+      1.3753574546426535,
+      9.910931234040147
+    ],
+    "radius": 6,
+    "accuracy": 0.35,
+    "sourceUrl": "https://warhammer40k.fandom.com/wiki/Zeist_Sector"
+  }
+]
