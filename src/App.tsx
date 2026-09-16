@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { StarSystems } from "./scene/StarSystem";
 import { CameraRig } from "./scene/CameraRig";
-import { Labels } from "./scene/Labels";
+import { Labels, SelectedStarLabel } from "./scene/Labels";
 import { SegmentumBoundaries } from "./scene/SegmentumBoundaries";
 import { SectorMarkers } from "./scene/SectorMarkers";
 import { InfoPanel } from "./ui/InfoPanel";
@@ -42,6 +42,7 @@ function App() {
           <SectorMarkers sectors={sectors} />
           <StarSystems systems={starSystems} />
           <Labels systems={labeledSystems} />
+          <SelectedStarLabel />
         </Suspense>
         <CameraRig />
         <EffectComposer multisampling={0}>

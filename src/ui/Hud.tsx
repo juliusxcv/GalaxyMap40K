@@ -7,9 +7,10 @@ export function Hud({ systems }: { systems: StarSystem[] }) {
     <>
       <div className="hud">
         <div className="hud__title">
+          <p className="hud__eyebrow">++ Astra Cartographica ++</p>
           <h1>Galaxy Map</h1>
           <p>Drag to rotate · Scroll to zoom · Click a star to inspect</p>
-          <div className="hud__legend">
+          <div className="hud__legend hud-corners">
             <span className="hud__legend-swatch" style={{ background: ACCURACY_GRADIENT_CSS }} />
             <span>Location confidence: unknown → confirmed</span>
           </div>

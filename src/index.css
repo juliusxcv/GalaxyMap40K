@@ -1,6 +1,33 @@
+/* ============================================================
+   COGITATOR INTERFACE THEME
+   Shared with the Doomtroopers Companion App — same dark terminal
+   HUD aesthetic, ported here as plain CSS custom properties since
+   this project doesn't run Tailwind. One committed dark theme, no
+   light mode: a 40k cogitator doesn't have a settings toggle for it.
+   ============================================================ */
 :root {
   color-scheme: dark;
-  font: 15px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+
+  --font-display: "Cinzel", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: "Spectral", serif;
+  --font-gothic: "Pirata One", "Cinzel", serif;
+
+  --color-ink: oklch(0.13 0.014 150);
+  --color-panel: oklch(0.175 0.016 150);
+  --color-panel-raised: oklch(0.21 0.018 150);
+
+  --color-phosphor: oklch(0.85 0.19 142);
+  --color-phosphor-dim: oklch(0.52 0.1 142);
+  --color-phosphor-faint: oklch(0.32 0.05 142);
+
+  --color-bone: oklch(0.9 0.02 85);
+  --color-bone-dim: oklch(0.62 0.02 85);
+
+  --color-brass: oklch(0.78 0.14 75);
+  --color-sanguine: oklch(0.58 0.19 25);
+
+  font: 15px/1.5 var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,9 +43,34 @@ body,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #020207;
+  background: var(--color-ink);
+  color: var(--color-bone);
 }
 
 button {
   font: inherit;
+}
+
+/* Fixed, subtle scanline texture on the viewport itself — the same
+   overlay technique the Companion App uses, so both apps share one
+   "look through the cogitator screen" feel. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    oklch(0 0 0 / 0.06) 2px,
+    oklch(0 0 0 / 0.06) 3px
+  );
+}
+
+.text-glow {
+  text-shadow:
+    0 0 4px color-mix(in oklab, var(--color-phosphor) 70%, transparent),
+    0 0 14px color-mix(in oklab, var(--color-phosphor) 40%, transparent);
 }

@@ -24,11 +24,26 @@ interface FlyAnimation {
   t: number;
 }
 
+// three.js's Points raycasting threshold is a constant world-space radius,
+// not a screen-space pixel radius — a fixed 0.175 therefore corresponded to
+// a wildly different, uncontrolled click-target size depending on zoom
+// (tiny in pixel terms zoomed out, huge zoomed in). Recomputed every frame
+// from the camera's actual FOV and viewport height, this keeps the click
+// target a roughly constant ~10px radius on screen at any zoom level —
+// forgiving enough to hit reliably, tight enough that a dense cluster
+// doesn't hand back some other nearby star instead. (The remaining source
+// of "wrong star" — the raycaster's default tie-break picks whichever
+// candidate is nearest the *camera*, not nearest the *cursor* — is handled
+// in Picking.tsx by re-sorting the candidates on distanceToRay instead.)
+const CLICK_TARGET_PX = 10;
+const CLICK_THRESHOLD_MIN = 0.01;
+const CLICK_THRESHOLD_MAX = 2;
+
 /** OrbitControls for free rotate/pan/zoom, plus an eased fly-to animation
  * that runs whenever a new star is selected in the store. */
 export function CameraRig() {
   const controlsRef = useRef<OrbitControlsImpl>(null);
-  const { camera } = useThree();
+  const { camera, raycaster, size } = useThree();
   const selectedSystem = useGalaxyStore((s) => s.selectedSystem);
   const focusNonce = useGalaxyStore((s) => s.focusNonce);
   const animRef = useRef<FlyAnimation | null>(null);
@@ -66,8 +81,19 @@ export function CameraRig() {
   }, [focusNonce]);
 
   useFrame((_, delta) => {
-    const anim = animRef.current;
     const controls = controlsRef.current;
+    if (controls && raycaster.params.Points && camera instanceof THREE.PerspectiveCamera) {
+      const distance = camera.position.distanceTo(controls.target);
+      const verticalFovRad = THREE.MathUtils.degToRad(camera.fov);
+      const worldUnitsPerPixel = (2 * Math.tan(verticalFovRad / 2) * distance) / size.height;
+      raycaster.params.Points.threshold = THREE.MathUtils.clamp(
+        worldUnitsPerPixel * CLICK_TARGET_PX,
+        CLICK_THRESHOLD_MIN,
+        CLICK_THRESHOLD_MAX
+      );
+    }
+
+    const anim = animRef.current;
     if (!anim || !controls) return;
 
     anim.t = Math.min(1, anim.t + delta / FLY_DURATION);
