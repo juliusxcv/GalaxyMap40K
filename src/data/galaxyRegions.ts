@@ -15,10 +15,8 @@ export interface Segmentum {
 
 // Terra isn't the galactic center — it just LOOKS that way on Imperial star
 // charts because the segmentum wheel is drawn centered on Terra, not on the
-// galaxy's true core. So: the ambient dust field (proceduralGalaxy.ts) is
-// centered on the true galactic center at the world origin, while the
-// segmentum wheel and every system position are centered on TERRA_OFFSET —
-// a point out within the dust field, standing in for Terra/Sol.
+// galaxy's true core. The segmentum wheel and every system position are
+// centered on this offset.
 export const TERRA_OFFSET: [number, number, number] = [20, 0, 0];
 
 // These boundaries are fit directly to the scraped star data rather than a

@@ -24,20 +24,27 @@ interface FlyAnimation {
   t: number;
 }
 
-// three.js's Points raycasting threshold is a constant world-space radius,
-// not a screen-space pixel radius — a fixed 0.175 therefore corresponded to
-// a wildly different, uncontrolled click-target size depending on zoom
-// (tiny in pixel terms zoomed out, huge zoomed in). Recomputed every frame
-// from the camera's actual FOV and viewport height, this keeps the click
-// target a roughly constant ~10px radius on screen at any zoom level —
-// forgiving enough to hit reliably, tight enough that a dense cluster
-// doesn't hand back some other nearby star instead. (The remaining source
-// of "wrong star" — the raycaster's default tie-break picks whichever
-// candidate is nearest the *camera*, not nearest the *cursor* — is handled
-// in Picking.tsx by re-sorting the candidates on distanceToRay instead.)
-const CLICK_TARGET_PX = 10;
-const CLICK_THRESHOLD_MIN = 0.01;
-const CLICK_THRESHOLD_MAX = 2;
+// three.js's Points raycasting threshold is a constant world-space radius
+// tested against the *entire ray* (near plane to far plane), not just near
+// the orbit target's depth — so it can't be made too generous: a star that
+// happens to sit almost exactly along the same ray direction as the one
+// you're aiming at, even if it's sixty units away at a completely different
+// depth, has a small perpendicular distance to that ray and gets caught as
+// a false candidate too. (Confirmed by testing: widening this to several
+// world units did exactly that — centered dead-on on an isolated star,
+// clicks resolved to an unrelated star elsewhere in the galaxy that
+// happened to line up along the same ray.) So this pass stays a modest,
+// bounded net — generous enough to tolerate the target-distance proxy
+// being a little off, not so generous it starts matching stars at the
+// wrong depth entirely. The precise, actually-centered decision happens
+// downstream in Picking.tsx, which re-ranks whatever this net catches by
+// real screen-pixel distance to the cursor and picks whichever is
+// genuinely nearest there, rejecting anything outside a tight pixel radius
+// — so an occasional wrong-depth false candidate this net lets through
+// only matters if it's also, coincidentally, closer on screen.
+const CLICK_TARGET_PX = 22;
+const CLICK_THRESHOLD_MIN = 0.02;
+const CLICK_THRESHOLD_MAX = 1.8;
 
 /** OrbitControls for free rotate/pan/zoom, plus an eased fly-to animation
  * that runs whenever a new star is selected in the store. */
