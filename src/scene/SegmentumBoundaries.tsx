@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, type CSSProperties } from "react";
 import * as THREE from "three";
 import { Line, Html } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -60,7 +60,9 @@ export function SegmentumBoundaries() {
                 else refs.current.delete(seg.id);
               }}
               className="segmentum-label"
-              style={{ color: seg.color }}
+              // Offered to the style sheet as "$segmentum"; the label's
+              // default text color there.
+              style={{ "--color-segmentum": seg.color } as CSSProperties}
             >
               {seg.name}
             </div>

@@ -7,6 +7,19 @@
    traffic, double-line registration crosshairs, boxed module tags and
    readouts, and tree-connector message lines — everything uppercase
    JetBrains Mono. Plain CSS; this project doesn't run Tailwind.
+
+   PAINT LIVES IN THE UI STYLE SHEET. Text color, text outline, fill,
+   frame-line color and shadows/glows of the map UI come from
+   src/theme/uiStyleSheet.json — edited in-app with the style editor
+   (F2), compiled by src/theme/compile.ts, catalogued in
+   src/theme/catalog.ts. The rules here and in App.css keep layout and
+   structure; one that has lost its colors names the style sheet
+   element that paints it ("Paint: kicker").
+
+   The --color-* tokens below are the base palette. The style editor's
+   Palette can override any of them for this map ("tokens" in
+   uiStyleSheet.json); this file keeps the values shared with the
+   Companion App.
    ============================================================ */
 :root {
   color-scheme: dark;
@@ -31,7 +44,8 @@
      crosshairs and target markings. */
   --color-signal: oklch(0.75 0.17 52);
 
-  /* CRT bloom: every lit glyph and line bleeds a little light. */
+  /* CRT bloom: every lit glyph and line bleeds a little light. (Style
+     sheet elements carry their own copies as shadow layers.) */
   --glow-phosphor:
     0 0 3px color-mix(in oklab, var(--color-phosphor) 75%, transparent),
     0 0 10px color-mix(in oklab, var(--color-phosphor) 35%, transparent);
@@ -99,7 +113,8 @@ body::before {
 
 /* ---------- Text ---------- */
 
-/* Small tracked caption above a box: "MODULE", "CORD.", "QUERY SYSTEM". */
+/* Small tracked caption above a box: "MODULE", "CORD.", "QUERY SYSTEM".
+   Paint: kicker. */
 .kicker {
   display: block;
   margin: 0 0 3px;
@@ -107,8 +122,6 @@ body::before {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-phosphor);
-  text-shadow: var(--glow-phosphor);
 }
 
 /* Blinking terminal cursor after a line. */
@@ -125,13 +138,13 @@ body::before {
 
 /* ---------- Boxes ---------- */
 
-/* Hard phosphor frame line, glowing inside and out. */
+/* Hard phosphor frame line, glowing inside and out. Paint: termBox
+   (shared by every boxed module; each can override it). */
 .term-box {
-  border: var(--line) solid var(--color-phosphor);
-  box-shadow: var(--glow-line-phosphor);
+  border: var(--line) solid;
 }
 
-/* "MODULE / [ STAR MAP ]" tag. */
+/* "MODULE / [ STAR MAP ]" tag. Paint: moduleTag. */
 .module-tag__box {
   display: inline-block;
   padding: 1px 10px;
@@ -139,10 +152,9 @@ body::before {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-shadow: var(--glow-phosphor);
 }
 
-/* "CORD. / [ 708.850.863 ]" readout. */
+/* "CORD. / [ 708.850.863 ]" readout. Paint: readoutValue. */
 .readout {
   display: flex;
   flex-direction: column;
@@ -157,14 +169,14 @@ body::before {
   font-weight: 700;
   letter-spacing: 0.1em;
   font-variant-numeric: tabular-nums;
-  text-shadow: var(--glow-phosphor);
 }
 
 /* ---------- Tree-connector message lines ----------
    ┐
    └─• ++ BEGIN ENCRYPTED MESSAGE ++
    └─• BY AUTHORITY OF ARCHMAGOS NOZICK
-   Each line's elbow and end-dot take the line's own color. */
+   Each line's elbow and end-dot take the line's own color.
+   Paint: treeLine, treeSignal (.is-signal), treeDim (.is-dim). */
 .tree {
   margin: 0;
   padding: 0 0 0 4px;
@@ -175,8 +187,6 @@ body::before {
   padding: 3px 0 3px 30px;
   text-transform: uppercase;
   letter-spacing: var(--tracking);
-  color: var(--color-phosphor);
-  text-shadow: var(--glow-phosphor);
 }
 .tree > li::before {
   content: "";
@@ -206,38 +216,22 @@ body::before {
   background: currentColor;
   box-shadow: 0 0 5px currentColor;
 }
-.tree > li.is-signal {
-  color: var(--color-signal);
-  text-shadow: var(--glow-signal);
-}
-.tree > li.is-dim {
-  color: var(--color-phosphor-dim);
-  text-shadow: none;
-}
 
 /* ---------- Controls ---------- */
 
+/* Paint: searchInput, with its Focused and Placeholder states. */
 .term-input {
   width: 100%;
   padding: 6px 10px;
-  background: color-mix(in oklab, var(--color-ink) 85%, transparent);
-  border: var(--line) solid var(--color-phosphor-dim);
-  color: var(--color-phosphor);
+  border: var(--line) solid;
   font-size: 13px;
   letter-spacing: var(--tracking);
   text-transform: uppercase;
-  text-shadow: var(--glow-phosphor);
   outline: none;
 }
-.term-input::placeholder {
-  color: var(--color-phosphor-dim);
-  text-shadow: none;
-}
-.term-input:focus {
-  border-color: var(--color-phosphor);
-  box-shadow: var(--glow-line-phosphor);
-}
 
+/* Paint: btnTerm / btnSignal and their Hover states. The frame line
+   follows the text color unless the style sheet sets one. */
 .btn-term,
 .btn-signal {
   display: inline-flex;
@@ -256,43 +250,23 @@ body::before {
     background-color 120ms,
     color 120ms;
 }
-.btn-term {
-  color: var(--color-phosphor);
-  text-shadow: var(--glow-phosphor);
-  box-shadow: var(--glow-line-phosphor);
-}
-.btn-term:hover {
-  background: color-mix(in oklab, var(--color-phosphor) 18%, transparent);
-}
-.btn-signal {
-  color: var(--color-signal);
-  text-shadow: var(--glow-signal);
-  box-shadow:
-    0 0 6px color-mix(in oklab, var(--color-signal) 45%, transparent),
-    inset 0 0 6px color-mix(in oklab, var(--color-signal) 25%, transparent);
-}
-.btn-signal:hover {
-  background: color-mix(in oklab, var(--color-signal) 20%, transparent);
-}
 
-/* Outlined data chip (classification tags). */
+/* Outlined data chip (classification tags). Paint: chip. */
 .chip {
   display: inline-block;
   padding: 1px 7px;
-  border: 1px solid var(--color-phosphor-dim);
+  border: 1px solid;
   font-size: 10px;
   letter-spacing: var(--tracking);
   text-transform: uppercase;
-  color: var(--color-phosphor);
 }
 
-/* ---------- Registration crosshair (see ui/Crosshair.tsx) ---------- */
+/* ---------- Registration crosshair (see ui/Crosshair.tsx) ----------
+   Paint: crosshair (line color, drop-shadow glow). */
 .crosshair {
   position: absolute;
   width: 34px;
   height: 34px;
-  color: var(--color-signal);
-  filter: drop-shadow(0 0 3px color-mix(in oklab, var(--color-signal) 70%, transparent));
   pointer-events: none;
 }
 

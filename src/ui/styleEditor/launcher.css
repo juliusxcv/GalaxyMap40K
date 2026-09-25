@@ -1,0 +1,48 @@
+/* The closed style editor's button (dev server, or while edits are unsaved).
+   Deliberately outside the style sheet: tool chrome, not map UI. It sits
+   on the frame's bottom line like a tab, below the credits' baseline. */
+.se-launcher {
+  position: fixed;
+  left: 50%;
+  bottom: 1px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 5px 3px 10px;
+  transform: translateX(-50%);
+  border: 1px solid #2b3037;
+  border-radius: 999px;
+  background: #0e1013;
+  color: #6f7780;
+  font: 600 10px/1.2 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-shadow: none;
+  transition:
+    color 120ms,
+    border-color 120ms;
+}
+
+.se-launcher:hover,
+.se-launcher:focus-visible {
+  outline: none;
+  border-color: rgb(124 196 255 / 0.6);
+  color: #dfe3e8;
+}
+
+.se-launcher kbd {
+  padding: 0 5px;
+  border: 1px solid #343a42;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 9.5px;
+  color: #aab2bb;
+}
+
+.se-launcher__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f2b441;
+}

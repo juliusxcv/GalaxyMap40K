@@ -1,0 +1,249 @@
+{
+  "about": "Paint for the star map UI. Edit in-app with the style editor (F2) or by hand. Colors: \"$token\" or \"$token 70%\" (palette color at 70% opacity), \"currentColor [N%]\", \"#rrggbb[aa]\". tokens: palette overrides; a token left out keeps its src/index.css value. Shadow layers: x, y, blur, spread (box only) in px.",
+  "version": 1,
+  "tokens": {},
+  "elements": {
+    "viewportFrame": {
+      "border": "$phosphor",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 45%" },
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 25%", "inset": true }
+      ]
+    },
+    "frameRail": {
+      "border": "$signal",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$signal 50%" }
+      ]
+    },
+    "crosshair": {
+      "color": "$signal",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 70%" }
+      ]
+    },
+    "termBox": {
+      "border": "$phosphor",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 45%" },
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 25%", "inset": true }
+      ]
+    },
+    "moduleTag": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "kicker": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "treeLine": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "treeSignal": {
+      "color": "$signal",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ]
+    },
+    "treeDim": {
+      "color": "$phosphor-dim",
+      "textShadow": []
+    },
+    "legend": {
+      "color": "$phosphor-dim"
+    },
+    "timeCord": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "timeCordBar": {
+      "fill": "$signal",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 8, "color": "$signal 55%" }
+      ]
+    },
+    "readoutValue": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "credits": {
+      "color": "$phosphor-dim"
+    },
+    "searchInput": {
+      "color": "$phosphor",
+      "fill": "$ink 85%",
+      "border": "$phosphor-dim",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "searchInputFocus": {
+      "border": "$phosphor",
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 45%" },
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 25%", "inset": true }
+      ]
+    },
+    "searchPlaceholder": {
+      "color": "$phosphor-dim",
+      "textShadow": []
+    },
+    "searchResults": {
+      "fill": "$ink 92%"
+    },
+    "searchResult": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "searchResultHover": {
+      "color": "$signal",
+      "fill": "$signal 10%",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ]
+    },
+    "searchFaction": {
+      "color": "$phosphor-dim",
+      "textShadow": []
+    },
+    "starLabel": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 70%" },
+        { "x": 0, "y": 0, "blur": 2, "color": "#000000" },
+        { "x": 0, "y": 1, "blur": 3, "color": "#000000" }
+      ]
+    },
+    "solLabel": {},
+    "segmentumLabel": {
+      "color": "$segmentum",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 4, "color": "currentColor 70%" },
+        { "x": 0, "y": 0, "blur": 14, "color": "currentColor 35%" },
+        { "x": 0, "y": 1, "blur": 4, "color": "#000000e6" }
+      ]
+    },
+    "sectorLabel": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 4, "color": "$phosphor 45%" },
+        { "x": 0, "y": 1, "blur": 3, "color": "#000000e6" },
+        { "x": 0, "y": 0, "blur": 2, "color": "#000000e6" }
+      ]
+    },
+    "callout": {
+      "color": "$signal"
+    },
+    "calloutLeader": {
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 70%" }
+      ]
+    },
+    "calloutBody": {
+      "fill": "#0000008c",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ]
+    },
+    "calloutHead": {},
+    "calloutName": {},
+    "calloutTree": {},
+    "btnSignal": {
+      "color": "$signal",
+      "border": "currentColor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ],
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$signal 45%" },
+        { "x": 0, "y": 0, "blur": 6, "color": "$signal 25%", "inset": true }
+      ]
+    },
+    "btnSignalHover": {
+      "fill": "$signal 20%"
+    },
+    "dossier": {
+      "fill": "$ink 94%"
+    },
+    "dossierTitle": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "dossierFaction": {
+      "color": "$signal",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ]
+    },
+    "dossierSummary": {
+      "color": "$phosphor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ]
+    },
+    "dossierKey": {
+      "color": "$phosphor-dim",
+      "textShadow": []
+    },
+    "dossierMemberType": {
+      "color": "$phosphor-dim",
+      "textShadow": []
+    },
+    "dossierLinkHover": {
+      "color": "$signal",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$signal 80%" },
+        { "x": 0, "y": 0, "blur": 11, "color": "$signal 40%" }
+      ]
+    },
+    "chip": {
+      "color": "$phosphor",
+      "border": "$phosphor-dim"
+    },
+    "btnTerm": {
+      "color": "$phosphor",
+      "border": "currentColor",
+      "textShadow": [
+        { "x": 0, "y": 0, "blur": 3, "color": "$phosphor 75%" },
+        { "x": 0, "y": 0, "blur": 10, "color": "$phosphor 35%" }
+      ],
+      "boxShadow": [
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 45%" },
+        { "x": 0, "y": 0, "blur": 6, "color": "$phosphor 25%", "inset": true }
+      ]
+    },
+    "btnTermHover": {
+      "fill": "$phosphor 18%"
+    }
+  }
+}
