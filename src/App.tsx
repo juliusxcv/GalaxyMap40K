@@ -12,13 +12,13 @@ import { GalaxyStars } from "./scene/galaxy/GalaxyStars";
 import { InfoPanel } from "./ui/InfoPanel";
 import { Hud } from "./ui/Hud";
 import { MapOverlay } from "./ui/MapOverlay";
-import starSystemsData from "./data/starSystems.json";
+import { STAR_SYSTEMS } from "./data/systems";
 import sectorsData from "./data/sectors.json";
-import type { StarSystem, Sector } from "./data/types";
+import type { Sector } from "./data/types";
 import { TERRA_OFFSET } from "./data/galaxyRegions";
 import "./App.css";
 
-const starSystems = starSystemsData as StarSystem[];
+const starSystems = STAR_SYSTEMS;
 const sectors = sectorsData as Sector[];
 
 function App() {

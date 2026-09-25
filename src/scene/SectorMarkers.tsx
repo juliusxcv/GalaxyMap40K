@@ -6,9 +6,9 @@ import type { Sector, StarSystem } from "../data/types";
 import { SEGMENTA, TERRA_OFFSET } from "../data/galaxyRegions";
 import { labelDistanceStyle, type LabelBand } from "./labelDistanceStyle";
 import { polar, wedgeOutline, circleOutline, normalizeAngle } from "./polarGeometry";
-import starSystemsData from "../data/starSystems.json";
+import { STAR_SYSTEMS } from "../data/systems";
 
-const starSystems = starSystemsData as StarSystem[];
+const starSystems = STAR_SYSTEMS;
 
 // Sectors are a closer-in layer than the segmenta: invisible while zoomed
 // out over the galaxy (nothing to show yet), fully shown once you've zoomed
