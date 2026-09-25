@@ -5,20 +5,13 @@ import type { StarSystem } from "../data/types";
 import { useGalaxyStore } from "../store/useGalaxyStore";
 import { usePicking } from "./Picking";
 import { accuracyToColor } from "../data/accuracyColor";
+import { BASE_SIZE, HOVER_SCALE, SELECT_SCALE, markerGlow } from "./markerSize";
 
 interface StarSystemsProps {
   systems: StarSystem[];
 }
 
-const HOVER_SCALE = 2.4;
-const SELECT_SCALE = 1.8;
 const LERP_SPEED = 10;
-const BASE_SIZE = 0.6;
-
-// Terra's home system anchors the galaxy's brightest, most confident marker
-// — its glow is boosted past what accuracy=1 alone would give it.
-const SOL_SYSTEM_ID = "system-sol-system";
-const SOL_GLOW_BOOST = 1.6;
 
 /** Deterministic pseudo-random 0..1 per system id, so each star's twinkle
  * phase/speed is stable across re-renders instead of reshuffling. */
@@ -94,17 +87,22 @@ const VERTEX_SHADER = /* glsl */ `
     float glowSize = aSize * (1.35 + aGlow * 0.55) * mix(1.0, 2.6, solBoost);
     float perspectiveSize = glowSize * (180.0 / -mvPosition.z);
 
+    // Every data system keeps a minimum screen-space size so it never
+    // shrinks into the decorative galaxy stars behind it (those stay ≤ ~3px).
+    // The floor scales with aSize, so hover/selection growth still shows
+    // when zoomed out; it hands over to perspective sizing inside ~20 units.
+    float markerFloorPx = glowSize * 9.0;
     // Sol (the only system with aGlow pushed past the confirmed ceiling of
-    // 1.0) keeps a minimum screen-space size so it stays a recognizable
-    // landmark even zoomed all the way out, instead of shrinking to a
-    // sub-pixel dot like every other star.
+    // 1.0) gets a larger floor still, so it stays a recognizable landmark
+    // even zoomed all the way out.
     float solFloorPx = solBoost * 16.0;
-    gl_PointSize = max(perspectiveSize, solFloorPx);
+    gl_PointSize = max(perspectiveSize, max(markerFloorPx, solFloorPx));
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
 
 const FRAGMENT_SHADER = /* glsl */ `
+  #define MARKER_GAIN 1.8
   varying vec3 vColor;
   varying float vGlow;
   varying float vFlickerSize;
@@ -188,14 +186,22 @@ const FRAGMENT_SHADER = /* glsl */ `
 
     vec3 spikeColor = mix(vec3(1.0), innerGlowColor, 0.35);
 
-    vec3 finalColor = vColor * circle
+    // Hot core: the star's own hue lifted halfway to full brightness, so dim
+    // tiers still read as points of light against the gas — while keeping
+    // their hue, and their order (confirmed stays brightest).
+    float peak = max(vColor.r, max(vColor.g, vColor.b));
+    vec3 coreColor = vColor / max(peak, 1e-3) * mix(peak, 1.0, 0.5);
+
+    vec3 finalColor = coreColor * circle
       + innerGlowColor * inner
       + outer1Color * outer1
       + innerGlowColor * outer2
       + spikeColor * spike
       + spikeColor * spikeDiag;
 
-    gl_FragColor = vec4(finalColor, 1.0);
+    // HDR gain: markers sit on a bright volumetric galaxy now, and pushing
+    // them past 1.0 lets the bloom pass give every data system its own glow.
+    gl_FragColor = vec4(finalColor * MARKER_GAIN, 1.0);
   }
 `;
 
@@ -235,8 +241,7 @@ export function StarSystems({ systems }: StarSystemsProps) {
       colors[i * 3 + 1] = tmpColor.g;
       colors[i * 3 + 2] = tmpColor.b;
       sizes[i] = BASE_SIZE * system.size;
-      const glow = Math.min(1, Math.max(0, system.accuracy));
-      glows[i] = system.id === SOL_SYSTEM_ID ? SOL_GLOW_BOOST : glow;
+      glows[i] = markerGlow(system);
       seeds[i] = hashSeed(system.id);
     });
 

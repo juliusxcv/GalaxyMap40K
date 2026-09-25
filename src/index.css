@@ -1,17 +1,17 @@
 /* ============================================================
-   COGITATOR INTERFACE THEME
-   Shared with the Doomtroopers Companion App — same dark terminal
-   HUD aesthetic, ported here as plain CSS custom properties since
-   this project doesn't run Tailwind. One committed dark theme, no
-   light mode: a 40k cogitator doesn't have a settings toggle for it.
+   COGITATOR INTERFACE THEME — MILITARY-OS TERMINAL
+   Color tokens are shared with the Doomtroopers Companion App (its
+   src/index.css @theme); keep those names and values in step. On top
+   of them sits the look of an Imperial tactical terminal: a CRT with
+   hard phosphor-green frame lines, amber "signal" text for priority
+   traffic, double-line registration crosshairs, boxed module tags and
+   readouts, and tree-connector message lines — everything uppercase
+   JetBrains Mono. Plain CSS; this project doesn't run Tailwind.
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  --font-display: "Cinzel", serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-body: "Spectral", serif;
-  --font-gothic: "Pirata One", "Cinzel", serif;
 
   --color-ink: oklch(0.13 0.014 150);
   --color-panel: oklch(0.175 0.016 150);
@@ -27,7 +27,25 @@
   --color-brass: oklch(0.78 0.14 75);
   --color-sanguine: oklch(0.58 0.19 25);
 
-  font: 15px/1.5 var(--font-mono);
+  /* Amber-orange priority traffic ("++ BEGIN ENCRYPTED MESSAGE ++"),
+     crosshairs and target markings. */
+  --color-signal: oklch(0.75 0.17 52);
+
+  /* CRT bloom: every lit glyph and line bleeds a little light. */
+  --glow-phosphor:
+    0 0 3px color-mix(in oklab, var(--color-phosphor) 75%, transparent),
+    0 0 10px color-mix(in oklab, var(--color-phosphor) 35%, transparent);
+  --glow-signal:
+    0 0 3px color-mix(in oklab, var(--color-signal) 80%, transparent),
+    0 0 11px color-mix(in oklab, var(--color-signal) 40%, transparent);
+  --glow-line-phosphor:
+    0 0 6px color-mix(in oklab, var(--color-phosphor) 45%, transparent),
+    inset 0 0 6px color-mix(in oklab, var(--color-phosphor) 25%, transparent);
+
+  --line: 2px;
+  --tracking: 0.08em;
+
+  font: 13px/1.5 var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -44,16 +62,26 @@ body,
   height: 100%;
   overflow: hidden;
   background: var(--color-ink);
-  color: var(--color-bone);
+  color: var(--color-phosphor);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
 }
 
 button {
-  font: inherit;
+  cursor: pointer;
 }
 
-/* Fixed, subtle scanline texture on the viewport itself — the same
-   overlay technique the Companion App uses, so both apps share one
-   "look through the cogitator screen" feel. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-phosphor-dim) transparent;
+}
+
+/* Fixed scanline texture on the viewport itself, as in the Companion App. */
 body::before {
   content: "";
   position: fixed;
@@ -64,13 +92,212 @@ body::before {
     to bottom,
     transparent 0,
     transparent 2px,
-    oklch(0 0 0 / 0.06) 2px,
-    oklch(0 0 0 / 0.06) 3px
+    oklch(0 0 0 / 0.08) 2px,
+    oklch(0 0 0 / 0.08) 3px
   );
 }
 
-.text-glow {
-  text-shadow:
-    0 0 4px color-mix(in oklab, var(--color-phosphor) 70%, transparent),
-    0 0 14px color-mix(in oklab, var(--color-phosphor) 40%, transparent);
+/* ---------- Text ---------- */
+
+/* Small tracked caption above a box: "MODULE", "CORD.", "QUERY SYSTEM". */
+.kicker {
+  display: block;
+  margin: 0 0 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-phosphor);
+  text-shadow: var(--glow-phosphor);
+}
+
+/* Blinking terminal cursor after a line. */
+.cursor::after {
+  content: "_";
+  margin-left: 0.4em;
+  animation: cursor-blink 1.05s steps(1) infinite;
+}
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Boxes ---------- */
+
+/* Hard phosphor frame line, glowing inside and out. */
+.term-box {
+  border: var(--line) solid var(--color-phosphor);
+  box-shadow: var(--glow-line-phosphor);
+}
+
+/* "MODULE / [ STAR MAP ]" tag. */
+.module-tag__box {
+  display: inline-block;
+  padding: 1px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: var(--glow-phosphor);
+}
+
+/* "CORD. / [ 708.850.863 ]" readout. */
+.readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.readout .kicker {
+  font-size: 11px;
+}
+.readout__value {
+  padding: 1px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: var(--glow-phosphor);
+}
+
+/* ---------- Tree-connector message lines ----------
+   ┐
+   └─• ++ BEGIN ENCRYPTED MESSAGE ++
+   └─• BY AUTHORITY OF ARCHMAGOS NOZICK
+   Each line's elbow and end-dot take the line's own color. */
+.tree {
+  margin: 0;
+  padding: 0 0 0 4px;
+  list-style: none;
+}
+.tree > li {
+  position: relative;
+  padding: 3px 0 3px 30px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+  color: var(--color-phosphor);
+  text-shadow: var(--glow-phosphor);
+}
+.tree > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: calc(50% + 1px);
+  border-left: var(--line) solid currentColor;
+  border-bottom: var(--line) solid currentColor;
+  /* drop-shadow, not box-shadow: it follows the two drawn edges instead of
+     glowing the elbow's whole box. */
+  filter: drop-shadow(0 0 3px color-mix(in oklab, currentColor 60%, transparent));
+}
+.tree > li + li::before {
+  top: -50%;
+  height: calc(100% + 1px);
+}
+.tree > li::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: calc(50% - 2px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 5px currentColor;
+}
+.tree > li.is-signal {
+  color: var(--color-signal);
+  text-shadow: var(--glow-signal);
+}
+.tree > li.is-dim {
+  color: var(--color-phosphor-dim);
+  text-shadow: none;
+}
+
+/* ---------- Controls ---------- */
+
+.term-input {
+  width: 100%;
+  padding: 6px 10px;
+  background: color-mix(in oklab, var(--color-ink) 85%, transparent);
+  border: var(--line) solid var(--color-phosphor-dim);
+  color: var(--color-phosphor);
+  font-size: 13px;
+  letter-spacing: var(--tracking);
+  text-transform: uppercase;
+  text-shadow: var(--glow-phosphor);
+  outline: none;
+}
+.term-input::placeholder {
+  color: var(--color-phosphor-dim);
+  text-shadow: none;
+}
+.term-input:focus {
+  border-color: var(--color-phosphor);
+  box-shadow: var(--glow-line-phosphor);
+}
+
+.btn-term,
+.btn-signal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: transparent;
+  border: var(--line) solid currentColor;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background-color 120ms,
+    color 120ms;
+}
+.btn-term {
+  color: var(--color-phosphor);
+  text-shadow: var(--glow-phosphor);
+  box-shadow: var(--glow-line-phosphor);
+}
+.btn-term:hover {
+  background: color-mix(in oklab, var(--color-phosphor) 18%, transparent);
+}
+.btn-signal {
+  color: var(--color-signal);
+  text-shadow: var(--glow-signal);
+  box-shadow:
+    0 0 6px color-mix(in oklab, var(--color-signal) 45%, transparent),
+    inset 0 0 6px color-mix(in oklab, var(--color-signal) 25%, transparent);
+}
+.btn-signal:hover {
+  background: color-mix(in oklab, var(--color-signal) 20%, transparent);
+}
+
+/* Outlined data chip (classification tags). */
+.chip {
+  display: inline-block;
+  padding: 1px 7px;
+  border: 1px solid var(--color-phosphor-dim);
+  font-size: 10px;
+  letter-spacing: var(--tracking);
+  text-transform: uppercase;
+  color: var(--color-phosphor);
+}
+
+/* ---------- Registration crosshair (see ui/Crosshair.tsx) ---------- */
+.crosshair {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  color: var(--color-signal);
+  filter: drop-shadow(0 0 3px color-mix(in oklab, var(--color-signal) 70%, transparent));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor::after {
+    animation: none;
+  }
 }

@@ -19,6 +19,9 @@ export interface Segmentum {
 // centered on this offset.
 export const TERRA_OFFSET: [number, number, number] = [20, 0, 0];
 
+/** Terra's home system — the map's one always-labelled landmark. */
+export const SOL_SYSTEM_ID = "system-sol-system";
+
 // These boundaries are fit directly to the scraped star data rather than a
 // clean 4-even-quadrants split: for every star with a `segmentum` label,
 // its angle and distance from Terra were computed, then each segmentum's
